@@ -1,0 +1,14 @@
+N = int(input())
+S = input()
+
+ans = 0
+
+for i in range(N):
+    if S[i] == 'A' and S[i+1] == 'B' and S[i+2] == 'C':
+        ans = i + 1
+        break
+
+if ans != 0:
+    print(ans)
+else:
+    print(-1)
