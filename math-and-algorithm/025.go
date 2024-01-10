@@ -1,34 +1,33 @@
 package main
 
-import "fmt"
-import "bufio"
-import "os"
-import "strings"
-import "strconv"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 func main() {
-    var N int
-    var ans float32 = 0.0
-    fmt.Scanln(&N)
+	r := bufio.NewReader(os.Stdin)
+	w := bufio.NewWriter(os.Stdout)
+	defer w.Flush()
 
-    sc := bufio.NewScanner(os.Stdin)
-    sc.Scan()
-    A := make([]int, N)
-    B := make([]int, N)
+	var n int
+	fmt.Fscan(r, &n)
 
-    inp := strings.Split(sc.Text(), " ")
-    for index, val := range inp {
-        A[index], _ = strconv.Atoi(val)
-    }
+	a := make([]float64, n)
+	for i := 0; i < n; i++ {
+		fmt.Fscan(r, &a[i])
+	}
 
-    sc.Scan()
-    inp = strings.Split(sc.Text(), " ")
-    for index, val := range inp {
-        B[index], _ = strconv.Atoi(val)
-    }
+	b := make([]float64, n)
+	for i := 0; i < n; i++ {
+		fmt.Fscan(r, &b[i])
+	}
 
-    for i := 0; i < N; i++ {
-        ans += (float32(A[i]) / 3.0) + (2.0*float32(B[i]) / 3.0) 
-    }
-    fmt.Println(ans)
+	var e float64
+	for i := 0; i < n; i++ {
+		e += a[i]/3 + b[i]*2/3
+	}
+
+	fmt.Fprintf(w, "%.12f\n", e)
 }
